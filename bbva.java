@@ -14,7 +14,7 @@ class persona {
 class Cliente extends persona {
     int numero;
 
-    Cliente(String nombre, String sexo, int edad) {
+    Cliente(String nombre, String sexo, int edad, int numero) {
         super(nombre, sexo, edad);
         this.numero = numero;
     }
@@ -26,7 +26,7 @@ class Banco {
 
     Cliente clientes[];
 
-    Banco(int cantidadClientes) {
+    Banco(int cantidadClientes, String nombre) {
         clientes = new Cliente[cantidadClientes];
         this.nombre = nombre;
     }
@@ -34,12 +34,33 @@ class Banco {
     Cliente crearCliente(String nombre, String sexo, int edad, int numero) {
         System.out.println("Creando cliente...");
         Cliente cliente = new Cliente(nombre, sexo, edad, numero);
+
+        for (int i = 0; i < clientes.length; i++) {
+            if (clientes[i] == null) {
+                clientes[i] = cliente;
+                System.out.println("CLIENTE CREADO EXITOSAMENTE");
+                break;
+            }
+        }
         return cliente;
+    }
+
+    void listarClientes() {
+        for (int i = 0; i < clientes.length; i++) {
+            if (clientes[i] != null) {
+                Cliente cliente = clientes[i];
+                System.out.println("cliente" + cliente.nombre + "No." + cliente.numero);
+            }
+        }
     }
 }
 
 class programa {
     public static void main(String[] args) {
-        System.out.println("HOLA MUNDO ");
+        System.out.println("welcome to the bank ");
+        Banco banco = new Banco(5, "BBVA");
+        banco.crearCliente("pepe", "hombre", 21, 12345);
+        banco.crearCliente("juan", "hombre", 25, 12346);
+        banco.listarClientes();
     }
 }
