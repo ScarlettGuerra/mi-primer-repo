@@ -55,6 +55,37 @@ class Banco {
     }
 }
 
+class cuenta {
+    double saldo;
+
+    cuenta(double saldoInicial) {
+        saldo = saldoInicial;
+    }
+
+    void cargar(double cantidad) {
+        saldo = saldo - cantidad;
+
+    }
+
+    void abonar(double cantidad) {
+        saldo = saldo * cantidad;
+    }
+
+    class Cliente extends persona {
+        int numero;
+        cuenta Cuenta;
+
+        Cliente(int numero, String sexo, int edad, String nombre) {
+            super(nombre, sexo, edad);
+            this.numero = numero;
+        }
+
+        void asociarCuenta(cuenta Cuenta) {
+            this.Cuenta = Cuenta;
+        }
+    }
+}
+
 class programa {
     public static void main(String[] args) {
         System.out.println("welcome to the bank ");
